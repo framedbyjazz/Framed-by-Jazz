@@ -1,0 +1,39 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "photos"
+    label: "Selected Works (Gallery)"
+    label_singular: "Photo"
+    files:
+      - file: "content/photos.json"
+        label: "Gallery"
+        name: "gallery"
+        fields:
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.meta}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Title", name: "name", widget: "string" }
+              - { label: "Location / Caption", name: "meta", widget: "string" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "content/settings.json"
+        label: "About & Contact"
+        name: "settings"
+        fields:
+          - { label: "Bio — paragraph 1", name: "bioParagraph1", widget: "text" }
+          - { label: "Bio — paragraph 2", name: "bioParagraph2", widget: "text" }
+          - { label: "Portrait photo", name: "aboutPhoto", widget: "image", required: false }
+          - { label: "Contact email", name: "email", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+          - { label: "YouTube URL", name: "youtube", widget: "string", required: false }
