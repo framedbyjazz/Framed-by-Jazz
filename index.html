@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Framed by Jazz — Travel & Leisure Photography / Film</title>
+<meta name="description" content="Travel and leisure photography and film by Jazz, based in Nairobi, Kenya.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@400;500;600&family=EB+Garamond:ital@0;1&family=Allura&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone: #EAE5D8;
+    --panel: #E2DCCB;
+    --ink: #262420;
+    --taupe: #9C917C;
+    --olive: #5B6047;
+    --clay: #9C5A3C;
+    --line: rgba(38,36,32,0.14);
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--stone);
+    color: var(--ink);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+  a{ color: inherit; }
+  ::selection{ background: var(--olive); color: var(--stone); }
+
+  .logo{
+    display:flex; align-items:center; gap: 10px;
+    text-decoration:none; color: var(--ink);
+  }
+  .logo svg{ width: 34px; height: 34px; flex: none; }
+  .logo-text{ display:flex; align-items:baseline; gap: 6px; white-space: nowrap; }
+  .logo-caps{
+    font-family: 'EB Garamond', serif; font-style: italic;
+    font-size: 0.85rem; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .logo-script{
+    font-family: 'Allura', cursive; font-size: 1.7rem; color: var(--clay);
+    line-height: 1;
+  }
+
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 5vw;
+    background: rgba(234,229,216,0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav{ display:flex; gap: clamp(16px, 3vw, 40px); }
+  nav a{
+    font-family:'Montserrat', sans-serif; font-weight: 500; font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration:none; padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+  nav a:hover, nav a:focus-visible{ border-bottom-color: currentColor; outline:none; }
+
+  .hero{
+    position: relative;
+    height: 100vh;
+    min-height: 560px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding-bottom: 64px;
+  }
+  .hero-title{
+    font-family:'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 8vw, 6.4rem);
+    line-height: 1.02;
+    margin: 0 0 18px 5vw;
+    letter-spacing: 0.01em;
+  }
+  .hero-title em{ font-style: normal; font-family:'Allura', cursive; font-size: 1.25em; color: var(--clay); font-weight: 400; letter-spacing: 0; }
+  .hero-sub{
+    margin: 0 0 40px 5vw;
+    font-family:'Montserrat', sans-serif; font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+
+  .filmstrip{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .filmstrip::before, .filmstrip::after{
+    content:""; position:absolute; top:0; bottom:0; width: 80px; z-index: 2;
+  }
+  .filmstrip::before{ left:0; background: linear-gradient(90deg, var(--stone), transparent); }
+  .filmstrip::after{ right:0; background: linear-gradient(270deg, var(--stone), transparent); }
+  .track{
+    display:flex; gap: 14px; width: max-content;
+    animation: scroll 42s linear infinite;
+  }
+  .filmstrip:hover .track{ animation-play-state: paused; }
+  @keyframes scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+  .frame-sm{
+    position: relative;
+    width: 190px; height: 130px; flex: none;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Montserrat', sans-serif; font-size: 0.62rem;
+    color: var(--taupe); text-transform: uppercase; letter-spacing: 0.08em;
+    text-align:center; padding: 8px; overflow:hidden;
+  }
+  .frame-sm img{ width:100%; height:100%; object-fit:cover; }
+
+  section{ padding: 120px 5vw; position: relative; }
+  .eyebrow{
+    font-family:'Montserrat', sans-serif; font-weight: 600; font-size: 0.68rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive);
+    margin: 0 0 20px;
+  }
+  h2.section-title{
+    font-family:'Cormorant SC', serif; font-weight: 500;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin: 0 0 60px; max-width: 18ch;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 4px;
+  }
+  .frame{
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--panel);
+    overflow:hidden;
+    cursor: pointer;
+  }
+  .frame img{
+    width:100%; height:100%; object-fit: cover; display:block;
+    transition: transform 0.7s cubic-bezier(.2,.7,.2,1);
+  }
+  .frame:hover img{ transform: scale(1.06); }
+  .frame .placeholder{
+    width:100%; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap: 10px;
+    font-family:'Montserrat', sans-serif; color: var(--taupe);
+    text-align:center; padding: 20px;
+    background:
+      repeating-linear-gradient(135deg, rgba(38,36,32,0.04) 0 2px, transparent 2px 14px);
+  }
+  .placeholder .num{ font-family:'Cormorant SC', serif; font-size: 2.4rem; color: var(--line); }
+  .placeholder small{ font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; max-width: 22ch; }
+
+  .frame-num{
+    position:absolute; top:10px; left:12px;
+    font-family:'Montserrat', sans-serif; font-size: 0.62rem;
+    color: var(--stone); background: rgba(38,36,32,0.55);
+    padding: 2px 6px; letter-spacing: 0.06em;
+  }
+  .caption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding: 14px 16px; color: var(--stone);
+    background: linear-gradient(0deg, rgba(38,36,32,0.85), transparent);
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+  }
+  .frame:hover .caption, .frame:focus-within .caption{ transform: translateY(0); }
+  .caption .name{ font-family:'Cormorant SC', serif; font-size: 1.15rem; display:block; }
+  .caption .meta{ font-family:'Montserrat', sans-serif; font-size: 0.6rem; color: var(--panel); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .about{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center;
+  }
+  .about-photo{
+    aspect-ratio: 3/4; background: var(--panel); border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
+  .about p{ font-size: 1.05rem; line-height: 1.8; color: var(--ink); max-width: 52ch; font-weight: 300; }
+  .about p + p{ margin-top: 1.2em; }
+  @media (max-width: 780px){
+    .about{ grid-template-columns: 1fr; }
+  }
+
+  .contact{ text-align:center; padding-bottom: 100px; }
+  .contact .big-link{
+    font-family:'Cormorant SC', serif; font-weight: 500;
+    font-size: clamp(1.6rem, 5.5vw, 3.4rem);
+    text-decoration:none; border-bottom: 1px solid transparent;
+    transition: color 0.3s ease;
+  }
+  .contact .big-link:hover{ color: var(--clay); }
+  .socials{ margin-top: 30px; font-family:'Montserrat', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; }
+  .socials a{ text-decoration:none; text-transform: uppercase; margin: 0 8px; }
+  .socials a:hover{ color: var(--clay); }
+
+  footer{
+    padding: 30px 5vw; border-top: 1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; align-items:center;
+    font-family:'Montserrat', sans-serif; font-size: 0.65rem; color: var(--taupe);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  :focus-visible{ outline: 1px solid var(--clay); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#top" class="logo">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 20 L14 45 Q14 48 17 48 L46 48 Q49 48 49 45 L49 24 Q49 21 46 21 L34 21 L31 15 L21 15 L18 21" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>
+      <circle cx="31" cy="34" r="9" stroke="currentColor" stroke-width="1.3" fill="none"/>
+      <circle cx="31" cy="34" r="4" stroke="currentColor" stroke-width="1" fill="none"/>
+    </svg>
+    <span class="logo-text"><span class="logo-caps">Framed by</span><span class="logo-script">Jazz</span></span>
+  </a>
+  <nav>
+    <a href="#work">Selected Works</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div id="top" class="hero">
+  <h1 class="hero-title">Travel &amp; leisure,<br><em>framed slowly.</em></h1>
+  <p class="hero-sub">Photography &amp; Film — Nairobi, Kenya</p>
+
+  <div class="filmstrip" aria-hidden="true">
+    <div class="track" id="track"></div>
+  </div>
+</div>
+
+<section id="work">
+  <p class="eyebrow">01 — Portfolio</p>
+  <h2 class="section-title">Selected works</h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="about">
+  <p class="eyebrow">02 — About</p>
+  <div class="about reveal">
+    <div class="about-photo" id="aboutPhoto">
+      <div class="placeholder"><span class="num">✺</span><small>Add portrait via /admin</small></div>
+    </div>
+    <div>
+      <h2 class="section-title" style="margin-bottom:28px;">The story behind the frame</h2>
+      <div id="bioText">
+        <p>I'm Jazz — based in Nairobi, working in hospitality by day and chasing new roads, coastlines, and quiet corners of places with a camera the rest of the time.</p>
+        <p>This is a short bio placeholder. Edit it from the /admin panel, or directly in content/settings.json.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact reveal">
+  <p class="eyebrow">03 — Get in touch</p>
+  <a class="big-link" id="emailLink" href="mailto:hello@framedbyjazz.com">hello@framedbyjazz.com</a>
+  <div class="socials" id="socials">
+    <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <span>© <span id="year"></span> Framed by Jazz</span>
+  <span>Built without a page builder</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const fallbackPhotos = [
+    { name: "Golden hour, coast", meta: "Diani Beach — Kenya", image: "" },
+    { name: "Morning market",     meta: "Nairobi",             image: "" },
+    { name: "The long road",      meta: "Rift Valley",         image: "" },
+    { name: "Still water",        meta: "Lake Naivasha",       image: "" },
+    { name: "Local light",        meta: "Zanzibar",            image: "" },
+    { name: "Rooftop, dusk",      meta: "Nairobi",             image: "" },
+    { name: "Passing through",    meta: "Amboseli",            image: "" },
+    { name: "Slow afternoon",     meta: "Lamu",                image: "" }
+  ];
+
+  async function loadJSON(path, fallback){
+    try{
+      const res = await fetch(path, { cache: "no-store" });
+      if(!res.ok) throw new Error("not found");
+      return await res.json();
+    }catch(e){
+      return fallback;
+    }
+  }
+
+  function renderGallery(photos){
+    const grid = document.getElementById('grid');
+    grid.innerHTML = "";
+    photos.forEach((p, i) => {
+      const num = String(i + 1).padStart(2, '0');
+      const frame = document.createElement('div');
+      frame.className = 'frame reveal';
+      frame.innerHTML = `
+        <span class="frame-num">${num}</span>
+        ${ p.image
+          ? `<img src="${p.image}" alt="${p.name || ''}" loading="lazy">`
+          : `<div class="placeholder"><span class="num">${num}</span><small>Add photo via /admin</small></div>`
+        }
+        <div class="caption"><span class="name">${p.name || ''}</span><span class="meta">${p.meta || ''}</span></div>
+      `;
+      grid.appendChild(frame);
+      io.observe(frame);
+    });
+
+    const track = document.getElementById('track');
+    track.innerHTML = "";
+    const strip = [...photos, ...photos];
+    strip.forEach((p) => {
+      const el = document.createElement('div');
+      el.className = 'frame-sm';
+      el.innerHTML = p.image
+        ? `<img src="${p.image}" alt="">`
+        : `<span>${p.name || ''}</span>`;
+      track.appendChild(el);
+    });
+  }
+
+  function renderSettings(s){
+    if(!s) return;
+    if(s.bioParagraph1 || s.bioParagraph2){
+      document.getElementById('bioText').innerHTML =
+        (s.bioParagraph1 ? `<p>${s.bioParagraph1}</p>` : '') +
+        (s.bioParagraph2 ? `<p>${s.bioParagraph2}</p>` : '');
+    }
+    if(s.aboutPhoto){
+      document.getElementById('aboutPhoto').innerHTML = `<img src="${s.aboutPhoto}" alt="Portrait">`;
+    }
+    if(s.email){
+      const el = document.getElementById('emailLink');
+      el.href = `mailto:${s.email}`;
+      el.textContent = s.email;
+    }
+    const socials = document.getElementById('socials');
+    let html = "";
+    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" rel="noopener">Instagram</a>`;
+    if(s.linkedin) html += `<a href="${s.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
+    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" rel="noopener">YouTube</a>`;
+    if(html) socials.innerHTML = html;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  (async () => {
+    const [photosData, settings] = await Promise.all([
+      loadJSON('content/photos.json', { photos: fallbackPhotos }),
+      loadJSON('content/settings.json', null)
+    ]);
+    const photos = (photosData && photosData.photos && photosData.photos.length) ? photosData.photos : fallbackPhotos;
+    renderGallery(photos);
+    renderSettings(settings);
+  })();
+</script>
+
+</body>
+</html>
